@@ -5,7 +5,7 @@
 **Author Name**: Add your name here
 
 ## WRRC
-Add an image of your WRRC here
+![WRRC](./images/handDraw)
 
 ## Overview
 
@@ -28,4 +28,3 @@ To view all the methods available, you should head over to developers.themoviedb
 Why would I need an API?
 The API provides a fast, consistent and reliable way to get third party data.
 
-</p>
