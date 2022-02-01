@@ -41,13 +41,14 @@ const trendingMoviesHandler = (req, res) => {
     });
 };
 
+//https://api.themoviedb.org/3/search/movie?api_key=668baa4bb128a32b82fe0c15b21dd699&language=en-US&query=The&page=2
 const searchMoviesHandler = (req, res) => {
   axios
     .get(
       `${process.env.SEARCHING_API}?api_key=${process.env.SEARCH_API_KEY}&language=en-US&query=The&page=2`
     )
     .then((result) => {
-      result.data;
+      return result.data;
     })
     .then((movies) => {
       const searchList = movies.results.map((movie) => {
@@ -74,7 +75,6 @@ server.get("/favorite", (req, res) => {
   res.send({ msg: "Welcome to Favorite Page" });
 });
 
-//https://api.themoviedb.org/3/trending/all/week?api_key=37ddc7081e348bf246a42f3be2b3dfd0&language=en-US
 server.get("/trending", trendingMoviesHandler);
 
 server.get("/search", searchMoviesHandler);
