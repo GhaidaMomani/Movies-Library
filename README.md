@@ -2,10 +2,10 @@
 
 # Project Name - Project Version
 
-**Author Name**: Add your name here
+**Author Name**: Ghaida Al Momani / Movies Library System
 
 ## WRRC
-Add an image of your WRRC here
+![WRRC](./images/handDraw.jpg)
 
 ## Overview
 
@@ -13,4 +13,7 @@ Add an image of your WRRC here
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
 ## Project Features
-<!-- What are the features included in you app -->
+<p>
+
+You can search movies, List your favourite movies 
+</p>
