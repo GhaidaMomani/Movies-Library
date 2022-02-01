@@ -48,7 +48,7 @@ const searchMoviesHandler = (req, res) => {
       `${process.env.SEARCHING_API}?api_key=${process.env.SEARCH_API_KEY}&language=en-US&query=The&page=2`
     )
     .then((result) => {
-     return result.data;
+      return result.data;
     })
     .then((movies) => {
       const searchList = movies.results.map((movie) => {
@@ -60,7 +60,7 @@ const searchMoviesHandler = (req, res) => {
           overview: movie.overview,
         };
       });
-     res.send(searchList);
+      res.send(searchList);
     })
     .catch((error) => {
       console.log("error");
@@ -75,7 +75,6 @@ server.get("/favorite", (req, res) => {
   res.send({ msg: "Welcome to Favorite Page" });
 });
 
-//https://api.themoviedb.org/3/trending/all/week?api_key=37ddc7081e348bf246a42f3be2b3dfd0&language=en-US
 server.get("/trending", trendingMoviesHandler);
 
 server.get("/search", searchMoviesHandler);
