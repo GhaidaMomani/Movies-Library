@@ -19,6 +19,7 @@
 
 
 ## API Documentation
+***
 API Overview
 Our API is available for everyone to use. A TMDB user account is required to request an API key. Professional users are approved on a per application basis.
 
@@ -29,9 +30,14 @@ To view all the methods available, you should head over to developers.themoviedb
 
 Why would I need an API?
 The API provides a fast, consistent and reliable way to get third party data
-
+***
 
 
 **--
 You can search movies, List your favourite movies 
+Add , Delete, and update any movie.
+Also you can display a specific movie or all of them.
 --**
+
+
+![The work flow of APIs, servers, DBs](./images/handDrawTask-13-14-15.jpg)
