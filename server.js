@@ -21,94 +21,38 @@ const client = new Client(dataBase);
 
 const { response } = require("express");
 
-//https://api.themoviedb.org/3/search/movie?api_key=668baa4bb128a32b82fe0c15b21dd699&language=en-US&query=The&page=2
+//////handlers for the endpoints
+server.get("/", handlers.homeMoviesHandler);
 
-const trendingMoviesHandler = (req, res) => {
-  axios
-    .get(
-      `${process.env.MOVIEDB_API_URL_TRENDING}?api_key=${process.env.API_KEY}&language=en-US`
-    )
-    //axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=37ddc7081e348bf246a42f3be2b3dfd0&language=en-US`)
+server.get("/favorite", handlers.favouriteMovieHandler);
 
-    .then((result) => {
-      return result.data;
-    })
-    .then((movies) => {
-      const resList = movies.results.map((movie) => {
-        return {
-          id: movie.id,
-          title: movie.title,
-          release_date: movie.release_date,
-          poster_path: movie.poster_path,
-          overview: movie.overview,
-        };
-      });
-      res.send(resList);
-    })
-    .catch((error) => {
-      console.log("error");
-    });
-};
+server.get("/trending", handlers.trendingMoviesHandler);
 
-//https://api.themoviedb.org/3/search/movie?api_key=668baa4bb128a32b82fe0c15b21dd699&language=en-US&query=The&page=2
-const searchMoviesHandler = (req, res) => {
-  axios
-    .get(
-      `${process.env.SEARCHING_API}?api_key=${process.env.SEARCH_API_KEY}&language=en-US&query=The&page=2`
-    )
-    .then((result) => {
-      return result.data;
-    })
-    .then((movies) => {
-      const searchList = movies.results.map((movie) => {
-        return {
-          id: movie.id,
-          title: movie.title,
-          release_date: movie.release_date,
-          poster_path: movie.poster_path,
-          overview: movie.overview,
-        };
-      });
-      res.send(searchList);
-    })
-    .catch((error) => {
-      console.log("error");
-    });
-};
-
-server.get("/", (req, res) => {
-  res.send(movies);
-});
-
-server.get("/favorite", (req, res) => {
-  res.send({ msg: "Welcome to Favorite Page" });
-});
-
-server.get("/trending", trendingMoviesHandler);
-
-server.get("/search", searchMoviesHandler);
+server.get("/search", handlers.searchMoviesHandler);
 
 server.get("/getMovies", handlers.getMoviesHandler);
 
 server.post("/addMovie", handlers.addMovieHandler);
 
+server.put("/updateMovie/:id", handlers.updateMovieHandler);
+
+server.delete("/deleteMovie/:id", handlers.deleteMovieHandler);
+
+server.get("/getMovie/:id", handlers.getMovieHandler);
+
 // server.listen(PORT, () => {
 //   console.log(`Listening on PORT ${PORT}`);
 // });
-
-
-
+///handeling errors
 //Handle 404
 server.get("*", function (req, res) {
- res.status(404).send("Sorry, Page not found");
+  res.status(404).send("Sorry, Page not found");
 });
 
 //Handle 500
 server.use(function (err, req, res) {
   res.status(500).send("Internal Server Error");
-  
 });
-
 
 //send the user to 500 page without shutting down the server
 process.on("uncaughtException", function (err) {
@@ -133,25 +77,25 @@ function movieslib(id, title, release_date, poster_path, overview) {
   this.overview = overview;
 }
 
-////////////// post request
-
-////////////// get request
-
-server.get("/getMovie/:id", (req, res) => {
-  client
-    .query(`SELECT * FROM movies WHERE id=${req.params.id} ;`, null)
-    .then((data) => {
-      res.status(200).json(data || "No movie was found");
-    })
-    .catch((e) => {
-      res
-        .status(e.response.status)
-        .send(`Database says: ${e.response.statusText}`);
-    });
-});
-
 client.connect().then(() =>
   server.listen(PORT, () => {
     console.log(`Listining to server on port ${PORT}.M`);
   })
 );
+
+//https://api.themoviedb.org/3/search/movie?api_key=668baa4bb128a32b82fe0c15b21dd699&language=en-US&query=The&page=2
+
+//https://api.themoviedb.org/3/search/movie?api_key=668baa4bb128a32b82fe0c15b21dd699&language=en-US&query=The&page=2
+
+// server.get("/getMovie/:id", (req, res) => {
+//   client
+//     .query(`SELECT * FROM movies WHERE id=${req.params.id} ;`, null)
+//     .then((data) => {
+//       res.status(200).json(data || "No movie was found");
+//     })
+//     .catch((e) => {
+//       res
+//         .status(e.response.status)
+//         .send(`Database says: ${e.response.statusText}`);
+//     });
+// });
