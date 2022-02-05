@@ -2,10 +2,14 @@
 
 # Project Name - Project Version
 
-**Author Name**: Add your name here
+**Author Name**: Ghaida Al Momani / Movies Library System
 
 ## WRRC
+<<<<<<< HEAD
 ![WRRC](./images/handDraw)
+=======
+![WRRC](./images/handDraw.jpg)
+>>>>>>> 8a60079b0463f0936dcc8cef6b755e667a6dc305
 
 ## Overview
 
@@ -13,6 +17,7 @@
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
 ## Project Features
+<<<<<<< HEAD
 <!-- What are the features included in you app -->
 
 ## API Documentation
@@ -28,3 +33,9 @@ To view all the methods available, you should head over to developers.themoviedb
 Why would I need an API?
 The API provides a fast, consistent and reliable way to get third party data.
 
+=======
+<p>
+
+You can search movies, List your favourite movies 
+</p>
+>>>>>>> 8a60079b0463f0936dcc8cef6b755e667a6dc305
