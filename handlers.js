@@ -4,6 +4,7 @@ const cors = require("cors");
 const axios = require("axios");
 require("dotenv").config();
 
+const movies = require("./Movie-Data/data.json");
 ///
 const pg = require("pg");
 const { Client } = require("pg");
