@@ -17,7 +17,14 @@ const movies = require("./Movie-Data/data.json");
 const { Client } = require("pg");
 const dataBase = process.env.CONNECTION_STRING;
 
-const client = new Client(dataBase);
+// const client = new Client(dataBase);
+
+const client = new pg.Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+})
+//secure socket layer 
+
 
 const { response } = require("express");
 
